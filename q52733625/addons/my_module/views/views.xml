@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Top menu item -->
+    <menuitem name="My top menu" id="my_module.menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="My left side menu" id="my_module.menu_left" parent="my_module.menu_root"/>    
+
+    <!-- Model Books: views, actions and menus -->
+
+    <!-- explicit tree view definition -->
+    <record model="ir.ui.view" id="my_module.books_view_tree">
+      <field name="name">My books - List view</field>
+      <field name="model">my_module.books</field>
+      <field name="arch" type="xml">
+        <tree>
+	  <field name="title"/>
+	  <field name="author"/>
+        </tree>
+      </field>
+   </record>
+
+   <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="my_module.books_view_form">
+      <field name="name">My books - Form view</field>
+      <field name="model">my_module.books</field>
+      <field name="arch" type="xml">
+	<form string="My books">
+	  <sheet>
+	    <group>
+	      <field name="title"/>
+	      <field name="author"/>
+	    </group>
+	  </sheet>
+	</form>
+      </field>
+    </record>
+
+    <!-- action opening views for this model -->
+    <record model="ir.actions.act_window" id="my_module.books_action_window">
+      <field name="name">My Books - Window action</field>
+      <field name="res_model">my_module.books</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- menu for the above action -->
+    <menuitem name="Books" id="my_module.menu_books" parent="my_module.menu_left" action="my_module.books_action_window" sequence="6" />
+    
+  </data>
+</openerp>
